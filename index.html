@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="NovaStudio creates elegant, high-performing websites for modern brands." />
+    <title>NovaStudio | Beautiful Websites That Connect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="page-bg"></div>
+
+    <header class="topbar">
+      <a class="brand" href="#home">Nova<span>Studio</span></a>
+      <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav-links" id="nav-links">
+        <a href="#services">Services</a>
+        <a href="#work">Work</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main id="home">
+      <section class="hero reveal">
+        <div class="hero-copy">
+          <p class="eyebrow">Crafted digital experiences</p>
+          <h1>We build bold, human-centered websites that convert.</h1>
+          <p class="hero-text">
+            From first click to final checkout, we blend strategy, design, and performance into modern web experiences that feel effortless.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contact">Book a call</a>
+            <a class="btn btn-secondary" href="#work">See our work</a>
+          </div>
+          <ul class="hero-highlights">
+            <li>Fast & SEO-ready</li>
+            <li>Pixel-perfect design</li>
+            <li>Built for growth</li>
+          </ul>
+        </div>
+        <div class="hero-visual">
+          <img src="assets/hero-illustration.svg" alt="Visual representation of a polished website dashboard" />
+        </div>
+      </section>
+
+      <section class="stats reveal">
+        <div class="stat-card">
+          <strong>120+</strong>
+          <span>Launches shipped</span>
+        </div>
+        <div class="stat-card">
+          <strong>98%</strong>
+          <span>Client satisfaction</span>
+        </div>
+        <div class="stat-card">
+          <strong>4.9/5</strong>
+          <span>Average review</span>
+        </div>
+      </section>
+
+      <section id="services" class="section reveal">
+        <div class="section-header">
+          <p class="eyebrow">What we do</p>
+          <h2>Everything your brand needs to shine online.</h2>
+        </div>
+        <div class="card-grid">
+          <article class="info-card">
+            <h3>Brand-led design</h3>
+            <p>Visual systems that express your identity with clarity, warmth, and impact.</p>
+          </article>
+          <article class="info-card">
+            <h3>Responsive websites</h3>
+            <p>Elegant pages that feel refined on every screen from mobile to desktop.</p>
+          </article>
+          <article class="info-card">
+            <h3>Performance optimization</h3>
+            <p>Speed, accessibility, and SEO built in so your site works hard for you.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="work" class="section section-alt reveal">
+        <div class="section-header">
+          <p class="eyebrow">Selected work</p>
+          <h2>Launches that feel premium and perform beautifully.</h2>
+        </div>
+        <div class="work-grid">
+          <article class="work-card">
+            <img src="assets/work-1.svg" alt="Studio dashboard preview" />
+            <div class="work-content">
+              <h3>Northstar Studio</h3>
+              <p>Refined booking experience with a calm, elevated visual direction.</p>
+            </div>
+          </article>
+          <article class="work-card">
+            <img src="assets/work-2.svg" alt="E-commerce storefront preview" />
+            <div class="work-content">
+              <h3>Alpine Goods</h3>
+              <p>High-converting storefront that blends storytelling with modern commerce.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <div class="quote-card">
+          <p>
+            “The result felt less like a website and more like a confident digital presence that truly represented our brand.”
+          </p>
+          <span>— Maya, product founder</span>
+        </div>
+      </section>
+
+      <section id="contact" class="section contact-cta reveal">
+        <div class="section-header">
+          <p class="eyebrow">Let’s create something remarkable</p>
+          <h2>Ready to launch a website your audience will remember?</h2>
+        </div>
+        <form class="contact-form" id="contact-form">
+          <input type="text" placeholder="Your name" required />
+          <input type="email" placeholder="Your email" required />
+          <textarea rows="4" placeholder="Tell us about your project"></textarea>
+          <button type="submit" class="btn btn-primary">Let’s talk</button>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <p>© <span id="year"></span> NovaStudio. Crafted with care.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
