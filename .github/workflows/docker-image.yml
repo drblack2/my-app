@@ -173,7 +173,7 @@ jobs:
 
           docker run -d \
           --name my-app-container \
-          -p 80:80 \
+          -p 7777:80 \
           ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-south-1.amazonaws.com/my-app:latest
 
 
