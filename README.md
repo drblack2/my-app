@@ -1,6 +1,6 @@
 # my-web-app
 
-A beautiful, responsive landing page built with plain HTML, CSS, and JavaScript.
+A beautiful, responsive landing page built with plain HTML, CSS, and JavaScript.new
 
 ## Project structure
 
