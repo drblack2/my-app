@@ -9,9 +9,10 @@ on:
     branches:
       - main
 
+  workflow_dispatch:   # Manual trigger
+
 
 jobs:
-
   build-and-push:
 
     name: Build Docker Image and Push to ECR
@@ -50,6 +51,7 @@ jobs:
         -t my-app .
 
 
+
     # 5. Tag Docker Image
     - name: Tag Docker Image
       run: |
@@ -65,3 +67,20 @@ jobs:
 
         docker push \
         ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-south-1.amazonaws.com/my-app:latest
+
+
+
+    # 7. Pull Image from ECR (Validation)
+    - name: Pull Docker Image from ECR
+      run: |
+
+        docker pull \
+        ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-south-1.amazonaws.com/my-app:latest
+
+
+
+    # 8. Verify Image
+    - name: List Docker Images
+      run: |
+
+        docker images
