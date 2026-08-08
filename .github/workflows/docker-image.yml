@@ -1,4 +1,3 @@
-```yaml
 name: CI-CD Pipeline
 
 on:
@@ -15,7 +14,7 @@ on:
 jobs:
 
   # ==========================================
-  # CI JOB - BUILD AND PUSH IMAGE TO ECR
+  # CI - BUILD AND PUSH DOCKER IMAGE TO ECR
   # ==========================================
 
   build-and-push:
@@ -53,7 +52,7 @@ jobs:
 
 
   # ==========================================
-  # CD JOB - DEPLOY IMAGE TO EC2
+  # CD - DEPLOY DOCKER IMAGE TO EC2
   # ==========================================
 
   deploy-to-ec2:
@@ -72,7 +71,6 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           port: 22
-
           timeout: 60s
           command_timeout: 10m
 
@@ -81,24 +79,20 @@ jobs:
             set -e
 
             echo "======================================"
-            echo "Connected to EC2"
+            echo "CONNECTED TO EC2"
             echo "======================================"
-
-            echo "Checking EC2..."
 
             whoami
             hostname
 
             echo "Checking Docker..."
-
             docker --version
 
             echo "Checking AWS CLI..."
-
             aws --version
 
             echo "======================================"
-            echo "Logging into ECR"
+            echo "LOGIN TO ECR"
             echo "======================================"
 
             aws ecr get-login-password \
@@ -109,22 +103,23 @@ jobs:
               ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-south-1.amazonaws.com
 
             echo "======================================"
-            echo "Pulling Latest Image"
+            echo "PULLING LATEST IMAGE"
             echo "======================================"
 
             docker pull \
               ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-south-1.amazonaws.com/my-app:latest
 
             echo "======================================"
-            echo "Stopping Old Container"
+            echo "STOPPING OLD CONTAINER"
             echo "======================================"
 
             docker stop my-app-container || true
 
+            echo "REMOVING OLD CONTAINER"
             docker rm my-app-container || true
 
             echo "======================================"
-            echo "Starting New Container"
+            echo "STARTING NEW CONTAINER"
             echo "======================================"
 
             docker run -d \
@@ -134,13 +129,19 @@ jobs:
               ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-south-1.amazonaws.com/my-app:latest
 
             echo "======================================"
-            echo "Container Status"
+            echo "CONTAINER STATUS"
             echo "======================================"
 
             docker ps
 
             echo "======================================"
-            echo "Testing Application"
+            echo "CONTAINER LOGS"
+            echo "======================================"
+
+            docker logs --tail 50 my-app-container
+
+            echo "======================================"
+            echo "TESTING APPLICATION"
             echo "======================================"
 
             sleep 5
@@ -150,4 +151,3 @@ jobs:
             echo "======================================"
             echo "DEPLOYMENT SUCCESSFUL"
             echo "======================================"
-```
