@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: argo
+  template:
+    metadata:
+      labels:
+        app: argo
+    spec:
+      containers:
+        - name: argo
+          image: 455880746048.dkr.ecr.ap-south-1.amazonaws.com/argo:latest
+          ports:
+            - containerPort: 8080
