@@ -14,11 +14,11 @@ on:
 jobs:
 
   # ==========================================
-  # CI - BUILD AND PUSH DOCKER IMAGE TO ECR
+  # CI - BUILD AND PUSH DOCKER IMAGE TO PUBLIC ECR
   # ==========================================
 
   build-and-push:
-    name: Build Docker Image and Push to ECR
+    name: Build Docker Image and Push to Public ECR
     runs-on: ubuntu-latest
 
     steps:
@@ -26,6 +26,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      # Configure AWS credentials
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -33,24 +34,25 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-south-1
 
-      - name: Login to Amazon ECR
+      # Login to Public ECR
+      - name: Login to Amazon ECR Public
         uses: aws-actions/amazon-ecr-login@v2
+        with:
+          registry-type: public
 
+      # Build Docker image
       - name: Build Docker Image
         run: |
           docker build -t argo:latest .
 
+      # Tag image for Public ECR
       - name: Tag Docker Image
         run: |
           docker tag argo:latest \
-            455880746048.dkr.ecr.ap-south-1.amazonaws.com/argo:latest
+            public.ecr.aws/q2b5c9d7/argo:latest
 
-      - name: Push Image to ECR
+      # Push image
+      - name: Push Image to Public ECR
         run: |
           docker push \
-            455880746048.dkr.ecr.ap-south-1.amazonaws.com/argo:latest
-
-
-  # ==========================================
-  # CD - DEPLOY DOCKER IMAGE TO EC2
-  # ==========================================
+            public.ecr.aws/q2b5c9d7/argo:latest
